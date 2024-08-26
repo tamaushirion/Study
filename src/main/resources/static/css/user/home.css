@@ -1,0 +1,15 @@
+.button {
+  text-align:center;
+  padding-bottom:30px;
+}
+
+a {
+  border: 1px solid #007BFF;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+body {
+  max-width:400px;
+  margin:0 auto;
+}

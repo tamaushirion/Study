@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+			<meta charset="UTF-8"></meta>
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<!-- CSS -->
+			<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+			<link rel="stylesheet" th:href="@{/css/user/workRegistration.css}">
+			<!-- JS -->
+			<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+			<script th:src="@{/webjars/bootstrap/bootstrap.min.js}" defer></script>
+			<title>勤務情報登録画面</title>
+	</head>
+	<body class="bg-secondary">
+		<div class="text-center">
+			<form id="workRegistrationーform" method="post" th:action="@{/workRegistration}" class="form-workRegistration">
+			<!-- 名前 -->
+			<div class="form-group">
+				<label for="worklace">勤務地</label>
+				<input type="text" class="form-control" style="text-align:center" value="水戸市"/>
+			</div>
+			<!-- メールアドレス -->
+			<div class="form-group">
+				<label for="">勤務日</label>
+				<input type="date" class="form-control" style="text-align:center" value="2024-06-11"/>
+			</div>
+			<!-- 始業時間 -->
+			<div class="form-group">
+				<label for="startTime">始業時間</label>
+				<input type="time" class="form-control" style="text-align:center" value="09:00"/>
+			</div>
+			<!-- 休憩時間 -->
+			<div class="form-group">
+				<label for="cbreakTime">休憩時間</label>
+				<input type="time" class="form-control" style="text-align:center" value="01:00"/>
+			</div>
+			<!-- 終業時間 -->
+			<div class="form-group">
+				<label for="endTime">終業時間</label>
+				<input type="time" class="form-control" style="text-align:center" value="18:00"/>
+			</div>
+			<!-- 申請ボタン -->
+			<input type="submit" th:Value="登録" class="btn btn-primary w-100 mt-3" />
+		</form>
+		</div>
+	</body>
+</html>
