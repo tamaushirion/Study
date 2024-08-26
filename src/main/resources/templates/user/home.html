@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+			<meta charset="UTF-8"></meta>
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<!-- CSS -->
+			<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+			<link rel="stylesheet" th:href="@{/css/user/home.css}">
+			<!-- JS -->
+			<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+			<script th:src="@{/webjars/bootstrap/bootstrap.min.js}" defer></script>
+			<title>ホーム画面</title>
+	</head>
+	<body class="bg-secondary">
+	<!-- 勤務時間登録 -->
+	<div class="button">
+		<a th:href="@{/WorkRegistration}">勤務時間登録</a>
+	</div>
+		<div class="text-center">
+			<thead>
+				<tr>
+					<th class="th-width">年-月</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td>
+						<a class="btn btn-primary w-50">詳細</a>
+					</td>
+				</tr>
+			</tbody>
+		</div>
+	</body>
+</html>

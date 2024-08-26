@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+			<meta charset="UTF-8"></meta>
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<!-- CSS -->
+			<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+			<link rel="stylesheet" th:href="@{/css/user/workInformation.css}">
+			<!-- JS -->
+			<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+			<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+			<title>該当月勤務情報画面</title>
+	</head>
+	<body class="bg-secondary">
+		<div class="text-center">
+			<thead>
+				<tr>
+					<th class="th-width">勤務日</th>
+					<th class="th-width">始業時間</th>
+					<th class="th-width">休憩時間</th>
+					<th class="th-width">終業時間</th>
+					<th class="th-width">勤務地</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</div>
+		
+		<div class="tabs">
+    <input id="all" type="checkbox" name="tab_item">
+    <label class="tab_item" for="all">勤務日の削除</label>
+    <input id="programming" type="checkbox" name="tab_item">
+    <label class="tab_item" for="programming">勤務情報の変更</label>
+    
+    <!-- 勤務日の削除 -->
+    <div class="tab_content" id="all_content">
+        
+        <div class="text-center">
+			<form id="deleteWorkTime-form" method="post">
+			<!-- 勤務日 -->
+			<div class="form-group">
+				<label for="workDay">勤務日</label>
+				<input type="date" style="text-align:center" class="form-control"/>
+			</div>
+			<!-- 削除ボタン -->
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+					削除
+				</button>
+
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-body" id="exampleModalLabel">削除確認画面</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								本当に削除しますか？
+							</div>
+							<div class="modal-footer">
+							    <button type="submit" class="btn btn-primary" name="delete">はい</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">いいえ</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+        
+    </div>
+    
+    <!-- 勤務情報の変更 -->
+    <div class="tab_content" id="programming_content">
+        
+        <div class="text-center">
+			<form id="updateWorkTime-form" method="post">
+			<!-- 勤務日 -->
+			<div class="form-group">
+				<label for="workDay">勤務日</label>
+				<input type="date" style="text-align:center" class="form-control"/>
+			</div>
+			<!-- 始業時間 -->
+			<div class="form-group">
+				<label for="startTime">始業時間</label>
+				<input type="time" style="text-align:center" class="form-control"/>
+			</div>
+			<!-- 休憩時間 -->
+			<div class="form-group">
+				<label for="breakTime">休憩時間</label>
+				<input type="time" style="text-align:center" class="form-control"/>
+			</div>
+			<!-- 終業時間 -->
+			<div class="form-group">
+				<label for="endTime">終業時間</label>
+				<input type="time" style="text-align:center" class="form-control"/>
+			</div>
+			<!-- 勤務地 -->
+			<div class="form-group">
+				<label for="endTime">勤務地</label>
+				<input type="time" style="text-align:center" class="form-control"/>
+			</div>
+			<!-- 申請ボタン -->
+			<div class="form-group">
+				<input type="submit" th:Value="保存" class="btn btn-primary w-100 mt-3" name="update" />
+			</div>
+			
+		</form>
+	</div>
+        
+    </div>
+	</body>
+</html>
