@@ -13,27 +13,31 @@
 	</head>
 	<body class="bg-secondary">
 		<div class="text-center">
-			<form id="signup-form" method="post" th:action="@{/signup}" class="form-signup">
+			<form id="signup-form" method="post" th:action="@{/signup}" class="form-signup" th:object="${signupForm}">
 			<h1 class="text-center">新規登録</h1>
 			<!-- 名前 -->
 			<div class="form-group">
-				<label for="name">名前</label>
-				<input type="text" class="form-control" style="text-align:center"/>
+				<label for="userName">名前</label>
+				<input type="text" style="text-align:center" class="form-control" th:field="*{userName}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{userName}"></div>
 			</div>
 			<!-- メールアドレス -->
 			<div class="form-group">
 				<label for="email">メールアドレス</label>
-				<input type="text" class="form-control" style="text-align:center"/>
+				<input type="text" class="form-control" style="text-align:center" th:field="*{email}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{email}"></div>
 			</div>
 			<!-- パスワード -->
 			<div class="form-group">
 				<label for="password">パスワード</label>
-				<input type="password" class="form-control" style="text-align:center"/>
+				<input type="password" class="form-control" style="text-align:center" th:field="*{password}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{password}"></div>
 			</div>
 			<!-- パスワード確認 -->
 			<div class="form-group">
 				<label for="confirmPassword">パスワード確認</label>
-				<input type="password" class="form-control" style="text-align:center"/>
+				<input type="password" class="form-control" style="text-align:center" th:field="*{confirmPassword}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{confirmPassword}"></div>
 			</div>
 			<!-- 申請ボタン -->
 			<input type="submit" th:Value="申請する" class="btn btn-primary w-100 mt-3" />
