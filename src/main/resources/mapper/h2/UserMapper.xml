@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapperとxmlのマッピング -->
+<mapper namespace="com.example.repository.UserMapper">
+
+<!-- ユーザー情報のマッピング -->
+	<resultMap type="com.example.domain.user.model.MUser"
+		id="user">
+		<id column="user_id" property="userId" />
+		<result column="user_name" property="userName" />
+		<result column="email" property="email" />
+		<result column="password" property="password" />
+		<result column="role" property="role" />
+	</resultMap>
+	
+	<resultMap type="com.example.domain.user.model.MWork"
+		id="workInfo">
+		<id column="work_info_id" property="workInfoId" />
+		<result column="work_day" property="workDay" />
+		<result column="start_time" property="startTime" />
+		<result column="break_time" property="breakTime" />
+		<result column="end_time" property="endTime" />
+	</resultMap>
+	
+	<resultMap type="com.example.domain.user.model.MPlace"
+		id="workPlace">
+		<id column="work_place_id" property="workPlaceId" />
+		<result column="work_place" property="workPlace" />
+	</resultMap>
+	
+	<!-- ログインユーザー取得 -->
+	<select id="findLoginUser" resultType="MUser">
+	SELECT * FROM m_users WHERE email = #{email}
+	</select>
+	
+	<!-- ユーザー新規登録 -->
+	<insert id="insertOne">
+	INSERT INTO m_users
+	(
+	user_name
+	, email
+	, password
+	, role
+	) VALUES (
+	#{userName}
+	, #{email}
+	, #{password}
+	, #{role}
+	);
+	</insert>
+	
+	<!-- 勤務情報登録 -->
+	<insert id="insertWorkInfo">
+	INSERT INTO t_work_infos
+	(
+	work_day
+	, start_time
+	, break_time
+	, end_time
+	) VALUES (
+	workDay
+	, #{startTime}
+	, #{breakTime}
+	, #{endTime}
+	);
+	</insert>
+	
+	<!-- 勤務場所登録 -->
+	<insert id="insertWorkPlace">
+	INSERT INTO m_work_places
+	(
+	work_place_id
+	, work_place
+	) VALUES (
+	workPlaceId
+	, #{workPlace}
+	);
+	</insert>
+	
+	<!-- パスワード更新 -->
+	<update id="updatePassword">
+	UPDATE m_users
+	  SET 
+	    password = #{password}
+	  WHERE
+	    user_id = #{userId}
+	</update>
+</mapper>

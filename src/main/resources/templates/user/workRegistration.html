@@ -8,36 +8,42 @@
 			<link rel="stylesheet" th:href="@{/css/user/workRegistration.css}">
 			<!-- JS -->
 			<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
-			<script th:src="@{/webjars/bootstrap/bootstrap.min.js}" defer></script>
+			<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 			<title>勤務情報登録画面</title>
 	</head>
 	<body class="bg-secondary">
 		<div class="text-center">
-			<form id="workRegistrationーform" method="post" th:action="@{/workRegistration}" class="form-workRegistration">
-			<!-- 名前 -->
+		
+			<form id="workRegistrationーform" method="post" th:action="@{/workRegistration}" class="form-workRegistration" th:object="${workInfoForm}">
+			<!-- 勤務地 -->
 			<div class="form-group">
-				<label for="worklace">勤務地</label>
-				<input type="text" class="form-control" style="text-align:center" value="水戸市"/>
+				<label for="workPlace">勤務地</label>
+				<input type="text" class="form-control" style="text-align:center" th:field="*{workPlace}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{workPlace}"></div>
 			</div>
-			<!-- メールアドレス -->
+			<!-- 勤務日 -->
 			<div class="form-group">
-				<label for="">勤務日</label>
-				<input type="date" class="form-control" style="text-align:center" value="2024-06-11"/>
+				<label for="workDay">勤務日</label>
+				<input type="date" class="form-control" style="text-align:center" value="2024-06-11" th:field="*{workDay}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{workDay}"></div>
 			</div>
 			<!-- 始業時間 -->
 			<div class="form-group">
 				<label for="startTime">始業時間</label>
-				<input type="time" class="form-control" style="text-align:center" value="09:00"/>
+				<input type="time" class="form-control" style="text-align:center" value="09:00" th:field="*{startTime}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{startTime}"></div>
 			</div>
 			<!-- 休憩時間 -->
 			<div class="form-group">
-				<label for="cbreakTime">休憩時間</label>
-				<input type="time" class="form-control" style="text-align:center" value="01:00"/>
+				<label for="breakTime">休憩時間</label>
+				<input type="time" class="form-control" style="text-align:center" value="01:00" th:field="*{breakTime}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{breakTime}"></div>
 			</div>
 			<!-- 終業時間 -->
 			<div class="form-group">
 				<label for="endTime">終業時間</label>
-				<input type="time" class="form-control" style="text-align:center" value="18:00"/>
+				<input type="time" class="form-control" style="text-align:center" value="18:00" th:field="*{endTime}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{endTime}"></div>
 			</div>
 			<!-- 申請ボタン -->
 			<input type="submit" th:Value="登録" class="btn btn-primary w-100 mt-3" />
