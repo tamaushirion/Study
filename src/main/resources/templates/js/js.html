@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/js/js.css}">
+<title>js</title>
+</head>
+<body>
+    <h1>Number guessing game</h1>
+
+    <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
+
+    <div class="form">
+      <label for="guessField">Enter a guess: </label>
+      <input type="number" min="1" max="100" required id="guessField" class="guessField">
+      <input type="submit" value="Submit guess" class="guessSubmit">
+    </div>
+
+    <div class="resultParas">
+      <p class="guesses"></p>
+      <p class="lastResult"></p>
+      <p class="lowOrHi"></p>
+    </div>
+
+    <script>
+      // Your JavaScript goes here
+      let randomNumber = Math.floor(Math.random() * 100) + 1;
+      //console.log(randomNumber);
+      
+      const guesses = document.querySelector('.guesses');
+      const lastResult = document.querySelector('.lastResult');
+      const lowOrHi = document.querySelector('.lowOrHi');
+      
+      const guessSubmit = document.querySelector('.guessSubmit');
+      const guessField = document.querySelector('.guessField');
+      
+      let guessCount = 1;
+      let resetButton;
+      guessField.focus();
+      function checkGuess() {
+    	  const userGuess = Number(guessField.value);
+    	  if(guessCount === 1) {
+    		  guesses.textContent = '前回の予想: ';
+    	  }
+    	  
+    	  guesses.textContent = `${guesses.textContent} ${userGuess}`;
+    	  
+    	  if(userGuess === randomNumber) {
+    		  lastResult.textContent = 'おめでとう!正解です!';
+    		  lastResult.style.backgroundColor = "green";
+    		  lowOrHi.textContent = "";
+    		  setGameOver();
+    	  } else if (guessCount === 10) {
+    	      lastResult.textContent = '!!!ゲームオーバー!!!';
+    	      lowOrHi.textContent = '';
+    	      setGameOver();
+    	      //前の二つの条件がどちらも当てはまらなかった場合のみ実行。(プレイヤーは間違えてはいるものの、予想回数が残っている。) この場合、プレイヤーに予想が間違っていることを伝え、入力された数字が大きいか小さいかを伝えるため、さらなる条件の確認を行う。
+    	  } else {
+    	      lastResult.textContent = '間違いです!';
+    	      lastResult.style.backgroundColor = 'red';
+    	      if(userGuess < randomNumber) {
+    	    	  lowOrHi.textContent = '今の予想は小さすぎです!' ;
+    	      } else if(userGuess > randomNumber) {
+    	    	  lowOrHi.textContent = '今の予想は大きすぎです!';
+    	      }
+    	  }
+    	  
+    	  guessCount++;
+    	  guessField.value = "";
+    	  guessField.focus();
+      };
+      
+      
+      function setGameOver(){
+    	  guessField.disabled = true;
+    	  guessSubmit.disabled = true;
+    	  resetButton = document.createElement('button');
+    	  resetButton.textContent = '新しいゲームを始める';
+    	  document.body.appendChild(resetButton);
+    	  resetButton.addEventListener('click', resetGame);
+      };
+      function resetGame() {
+    	  guessCount = 1;
+    	  const resetParas = document.querySelectorAll('.resultParas p');
+    	  
+    	  /* for (let i = 0 ; i < resetParas.length ; i++) {
+    		    resetParas[i].textContent = '';
+    		    } */
+    	  
+    	  for(const resetPara of resetParas) {
+    		  resetPara.textContent = "";
+    	  }
+    	  
+    	//リセットボタンをページから削除。
+    	 resetButton.parentNode.removeChild(resetButton);
+    	 guessField.disabled = false;
+   	     guessSubmit.disabled = false;
+   	     guessField.value = '';
+   	     guessField.focus();
+   	     lastResult.style.backgroundColor = 'white';
+   	     randomNumber = Math.floor(Math.random() * 100) + 1;
+      };
+      
+      guessSubmit.addEventListener('click', checkGuess);
+      
+      
+    </script>
+  </body>
+</html>

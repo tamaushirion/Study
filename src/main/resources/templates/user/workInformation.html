@@ -13,6 +13,7 @@
 	</head>
 	<body class="bg-secondary">
 		<div class="text-center">
+		<table class="table table-bordered table-hover table-lg">
 			<thead>
 				<tr>
 					<th class="th-width">勤務日</th>
@@ -23,14 +24,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+				<tr th:each="relevantMonth : ${relevantMonthList}">
+					<td th:text="${relevantMonth.workDay}"></td>
+					<td th:text="${relevantMonth.startTime}"></td>
+					<td th:text="${relevantMonth.breakTime}"></td>
+					<td th:text="${relevantMonth.endTime}"></td>
+					<td th:text="${relevantMonth.workPlace}"></td>
 				</tr>
 			</tbody>
+			</table>
 		</div>
 		
 		<div class="tabs">

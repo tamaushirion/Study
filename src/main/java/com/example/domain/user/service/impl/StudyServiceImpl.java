@@ -1,10 +1,13 @@
 package com.example.domain.user.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.domain.user.model.MUser;
+import com.example.domain.user.model.MWork;
 import com.example.domain.user.service.StudyService;
 import com.example.repository.UserMapper;
 
@@ -33,5 +36,15 @@ public class StudyServiceImpl implements StudyService {
 	@Override
 	public void updatePassword(Integer userId, String password) {
 		userMapper.updatePassword(userId, passwordEncoder.encode(password));
+	}
+	//ログインユーザーの年月日取得
+	@Override
+	public List<MWork> findYearMonth(Integer userId) {
+	    return userMapper.findYearMonth(userId);
+	}
+	//該当月の勤務日取得
+	@Override
+	public List<MWork> selectWorkInfoWithPlace(Integer userId, String workDay) {
+		return userMapper.selectWorkInfoWithPlace(userId, workDay);
 	}
 }

@@ -14,9 +14,10 @@
 	<body class="bg-secondary">
 	<!-- 勤務時間登録 -->
 	<div class="button">
-		<a th:href="@{/WorkRegistration}">勤務時間登録</a>
+		<a class="a" th:href="@{/WorkRegistration}">勤務時間登録</a>
 	</div>
 		<div class="text-center">
+		<table>
 			<thead>
 				<tr>
 					<th class="th-width">年-月</th>
@@ -24,13 +25,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td></td>
-					<td>
-						<a class="btn btn-primary w-50">詳細</a>
+				<tr th:each="YearMonth : ${yearMonth}">
+					<td class="bottom" th:text="${YearMonth}"></td>
+					<td class="bottom">
+						<a class="btn btn-primary w-100" th:href="@{'/WorkInformation/'+${YearMonth}}">詳細</a>
 					</td>
 				</tr>
 			</tbody>
+		</table>
 		</div>
 	</body>
 </html>

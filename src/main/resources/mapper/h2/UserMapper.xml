@@ -17,11 +17,16 @@
 	<resultMap type="com.example.domain.user.model.MWork"
 		id="workInfo">
 		<id column="work_info_id" property="workInfoId" />
+		<result column="user_id" property="userId" />
+		<result column="work_place_id" property="workPlaceId" />
 		<result column="work_day" property="workDay" />
 		<result column="start_time" property="startTime" />
 		<result column="break_time" property="breakTime" />
 		<result column="end_time" property="endTime" />
+		<result column="work_place" property="workPlace" />
 	</resultMap>
+	
+	
 	
 	<resultMap type="com.example.domain.user.model.MPlace"
 		id="workPlace">
@@ -86,4 +91,28 @@
 	  WHERE
 	    user_id = #{userId}
 	</update>
+	
+	<!-- 勤務年月日取得 -->
+	<select id="findYearMonth" resultType="MWork">
+	SELECT work_day FROM t_work_infos WHERE user_id = #{userId} ORDER BY work_day DESC
+	</select>
+	
+	<!-- 該当勤務日取得 -->
+	<select id="selectWorkInfoWithPlace" resultMap="workInfo">
+	SELECT 
+		tw.work_day,
+		tw.start_time,
+		tw.break_time,
+		tw.end_time,
+		mwp.work_place
+	FROM
+		t_work_infos tw
+	INNER JOIN
+		m_work_places mwp ON tw.work_place_id = mwp.work_place_id
+	WHERE
+	    user_id = #{userId}
+    AND
+		work_day LIKE CONCAT(#{workDay}, '%') ORDER BY work_day ASC
+	</select>
+	
 </mapper>
